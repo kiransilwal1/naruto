@@ -99,9 +99,9 @@ class ProfileModel extends Profile {
 
     List<String> classification = [];
     List<String> affiliations = [];
-    // if (map['id'] == 13) {
-    print(map['id']);
-    // }
+    if (map['id'] == 6) {
+      print(map['id']);
+    }
     double weight = 0;
     if (checkKeyExists(map, 'classification')) {
       if (map['personal']['classification'] is List) {
@@ -118,7 +118,7 @@ class ProfileModel extends Profile {
             .map((e) => e as String)
             .toList();
       } else {
-        affiliations = ['Ninja'];
+        affiliations = ['Shinobi'];
       }
     }
     int? age;

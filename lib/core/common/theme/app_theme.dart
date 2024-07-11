@@ -72,6 +72,16 @@ class AppTheme {
   static const Color secondary800 = Color(0xFF8c2216);
   static const Color secondary900 = Color(0xFF74100d);
 
+  static const Color saropa100 = Color(0xFFe8eaef);
+  static const Color saropa200 = Color(0xFF9ea8bf);
+  static const Color saropa300 = Color(0xFF7987a5);
+  static const Color saropa400 = Color(0xFF5d6e93);
+  static const Color saropa500 = Color(0xFF425584);
+  static const Color saropa600 = Color(0xFF3c4e7b);
+  static const Color saropa700 = Color(0xFF344470);
+  static const Color saropa800 = Color(0xFF2d3b63);
+  static const Color saropa900 = Color(0xFF232b4a);
+
   static const BoxShadow cardShadowSmall = BoxShadow(
     color: Color(0x1A465793),
     offset: Offset(4, 8),
