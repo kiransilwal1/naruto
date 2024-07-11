@@ -64,7 +64,7 @@ class PrimaryButton extends StatelessWidget {
     } else if (style is LabelButtonStyle) {
       content = Text(
         (style as LabelButtonStyle).text,
-        style: AppTheme.headline300.copyWith(color: Colors.white),
+        style: AppTheme.headline300.copyWith(color: AppTheme.neutral200),
       );
     } else {
       throw ArgumentError('Invalid ButtonStyle');
@@ -74,12 +74,12 @@ class PrimaryButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppTheme.neutral500,
+          backgroundColor: AppTheme.saropa900,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(100),
+            borderRadius: BorderRadius.circular(8),
           ),
           padding:
-              EdgeInsets.symmetric(vertical: 16, horizontal: padding ?? 40),
+              EdgeInsets.symmetric(vertical: 16, horizontal: padding ?? 16),
         ),
         child: content,
       ),

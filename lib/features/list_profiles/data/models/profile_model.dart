@@ -99,7 +99,7 @@ class ProfileModel extends Profile {
 
     List<String> classification = [];
     List<String> affiliations = [];
-    if (map['id'] == 6) {
+    if (map['id'] == 193) {
       print(map['id']);
     }
     double weight = 0;

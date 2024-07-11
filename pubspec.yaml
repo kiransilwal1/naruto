@@ -74,6 +74,7 @@ flutter:
     - assets/ninja-profile.png
     - assets/home-image.png
     - assets/kunai.svg
+    - assets/add-ninja.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

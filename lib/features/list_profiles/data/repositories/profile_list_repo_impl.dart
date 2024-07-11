@@ -28,4 +28,10 @@ class ProfileListRepoImpl implements ProfileListRepo {
       return left(Failure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> addProfiles() {
+    // TODO: implement addProfiles
+    throw UnimplementedError();
+  }
 }
