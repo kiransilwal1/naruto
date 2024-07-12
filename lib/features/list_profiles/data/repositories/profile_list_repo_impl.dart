@@ -2,6 +2,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:naruto/core/common/error/failures.dart';
 import 'package:naruto/core/common/network/connection_checker.dart';
 import 'package:naruto/features/list_profiles/data/models/profile_model.dart';
+import 'package:naruto/features/list_profiles/domain/entities/profile.dart';
 import 'package:naruto/features/list_profiles/domain/repositories/profile_list_repo.dart';
 
 import '../../../../core/common/error/exceptions.dart';
@@ -30,7 +31,7 @@ class ProfileListRepoImpl implements ProfileListRepo {
   }
 
   @override
-  Future<Either<Failure, void>> addProfiles() {
+  Future<Either<Failure, void>> addProfiles(Profile profile) {
     // TODO: implement addProfiles
     throw UnimplementedError();
   }

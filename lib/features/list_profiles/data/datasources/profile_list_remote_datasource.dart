@@ -5,9 +5,11 @@ import 'package:naruto/core/common/error/exceptions.dart';
 import 'package:naruto/features/list_profiles/data/models/profile_model.dart';
 
 import '../../../../core/constants/constants.dart';
+import '../../domain/entities/profile.dart';
 
 abstract interface class ProfileRemoteDataSource {
   Future<List<ProfileModel>> getProfiles();
+  Future<void> addProfiles(Profile profile);
 }
 
 class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
@@ -28,5 +30,11 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
     } catch (e) {
       throw ServerException(e.toString());
     }
+  }
+
+  @override
+  Future<void> addProfiles(Profile profile) {
+    // TODO: implement addProfiles
+    throw UnimplementedError();
   }
 }

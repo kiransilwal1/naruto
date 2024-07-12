@@ -447,7 +447,9 @@ class UserProfile extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.transparent,
                                   shape: RoundedRectangleBorder(
@@ -470,7 +472,7 @@ class UserProfile extends StatelessWidget {
                                         .add(AddProfileEvent(profile));
                                   },
                                   style: LeadingIconStyle(
-                                      text: 'Add ${profile.name}',
+                                      text: 'Add ${profile.name.split(' ')[0]}',
                                       leadingIconImagePath:
                                           'assets/add-ninja.svg'))
 
