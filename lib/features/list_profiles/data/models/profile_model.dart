@@ -99,9 +99,9 @@ class ProfileModel extends Profile {
 
     List<String> classification = [];
     List<String> affiliations = [];
-    if (map['id'] == 193) {
-      print(map['id']);
-    }
+    // if (map['id'] == 193) {
+    //   print(map['id']);
+    // }
     double weight = 0;
     if (checkKeyExists(map, 'classification')) {
       if (map['personal']['classification'] is List) {

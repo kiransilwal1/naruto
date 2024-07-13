@@ -6,6 +6,7 @@ final class ListProfileInitiated extends ListProfilesEvent {}
 
 final class AddProfileEvent extends ListProfilesEvent {
   final Profile profile;
+  final List<Profile> profiles;
 
-  AddProfileEvent(this.profile);
+  AddProfileEvent({required this.profile, required this.profiles});
 }

@@ -174,7 +174,6 @@ class _MyHomePageState extends State<MyHomePage> {
                               element.affiliations.contains(village))
                           .toList();
                     }
-                    print(villageNinjas);
                     return SizedBox(
                       height: 500,
                       child: ListView(
@@ -283,7 +282,6 @@ class UserProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(profile.affiliations.join(','));
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
@@ -464,17 +462,27 @@ class UserProfile extends StatelessWidget {
                                       .copyWith(color: AppTheme.neutral500),
                                 ),
                               ),
-                              PrimaryButton(
-                                  isDisabled: false,
-                                  onPressed: () {
-                                    context
-                                        .read<ListProfilesBloc>()
-                                        .add(AddProfileEvent(profile));
-                                  },
-                                  style: LeadingIconStyle(
-                                      text: 'Add ${profile.name.split(' ')[0]}',
-                                      leadingIconImagePath:
-                                          'assets/add-ninja.svg'))
+                              BlocBuilder<ListProfilesBloc, ListProfilesState>(
+                                builder: (context, state) {
+                                  if (state is ListProfilesSuccess) {
+                                    return PrimaryButton(
+                                        isDisabled: false,
+                                        onPressed: () {
+                                          context.read<ListProfilesBloc>().add(
+                                              AddProfileEvent(
+                                                  profile: profile,
+                                                  profiles: state.profiles));
+                                        },
+                                        style: LeadingIconStyle(
+                                            text:
+                                                'Add ${profile.name.split(' ')[0]}',
+                                            leadingIconImagePath:
+                                                'assets/add-ninja.svg'));
+                                  } else {
+                                    return const SizedBox();
+                                  }
+                                },
+                              )
 
                               // ElevatedButton(
                               //   onPressed: () {},

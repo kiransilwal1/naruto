@@ -10,6 +10,6 @@ class ProfileAddUseCase implements UseCase<void, Profile> {
   ProfileAddUseCase({required this.profileListRepo});
   @override
   Future<Either<Failure, void>> call(Profile profile) async {
-    return await profileListRepo.getProfiles();
+    return await profileListRepo.addProfiles(profile);
   }
 }

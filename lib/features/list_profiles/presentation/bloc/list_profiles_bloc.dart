@@ -33,6 +33,7 @@ class ListProfilesBloc extends Bloc<ListProfilesEvent, ListProfilesState> {
   FutureOr<void> addProfile(
       AddProfileEvent event, Emitter<ListProfilesState> emit) async {
     final res = await _profileAddUseCase(event.profile);
-    res.fold((l) => emit(ListProfilesFailure(message: l.message)), (r) => null);
+    res.fold((l) => emit(ListProfilesFailure(message: l.message)),
+        (r) => emit(ListProfilesSuccess(profiles: event.profiles)));
   }
 }
