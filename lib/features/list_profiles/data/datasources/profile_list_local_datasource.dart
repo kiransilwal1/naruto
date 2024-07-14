@@ -16,7 +16,7 @@ class ProfileLocalDatasourceImpl implements ProfileLocalDatasource {
   Future<void> addProfiles(ProfileModel profile) async {
     try {
       const String profilesKey = 'profiles';
-      // sharedPreferences.clear();
+      sharedPreferences.clear();
 
       final String? jsonString = sharedPreferences.getString(profilesKey);
 
