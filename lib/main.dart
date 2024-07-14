@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:naruto/core/common/theme/app_theme.dart';
+import 'package:naruto/features/contacts/presentation/bloc/contacts_bloc.dart';
 import 'package:naruto/features/list_profiles/presentation/bloc/list_profiles_bloc.dart';
 import 'features/list_profiles/presentation/pages/home_page.dart';
 import 'dependencies.dart';
@@ -11,7 +12,12 @@ void main() async {
   await setupDependencies();
   await GetIt.instance.allReady();
   runApp(MultiBlocProvider(
-    providers: [BlocProvider(create: (_) => getIt<ListProfilesBloc>())],
+    providers: [
+      BlocProvider(
+        create: (_) => getIt<ListProfilesBloc>(),
+      ),
+      BlocProvider(create: (_) => getIt<ContactsBloc>())
+    ],
     child: const MyApp(),
   ));
 }

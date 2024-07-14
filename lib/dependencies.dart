@@ -1,6 +1,11 @@
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:naruto/core/common/network/connection_checker.dart';
+import 'package:naruto/features/contacts/data/datasources/contacts_local_datasource.dart';
+import 'package:naruto/features/contacts/data/repositories/contact_load_repo_impl.dart';
+import 'package:naruto/features/contacts/domain/usecases/contact_load_use_case.dart';
+import 'package:naruto/features/contacts/domain/usecases/contacts_by_id_usecase.dart';
+import 'package:naruto/features/contacts/presentation/bloc/contacts_bloc.dart';
 import 'package:naruto/features/list_profiles/data/datasources/profile_list_local_datasource.dart';
 import 'package:naruto/features/list_profiles/data/datasources/profile_list_remote_datasource.dart';
 import 'package:naruto/features/list_profiles/data/repositories/profile_list_repo_impl.dart';
@@ -40,10 +45,43 @@ Future<void> setupDependencies() async {
     ),
   );
 
+  getIt.registerFactory<ContactsByIdUseCase>(
+      () => ContactsByIdUseCase(contactLoadRepo: getIt<ContactLoadRepoImpl>()));
+
   getIt.registerFactory<ListProfilesBloc>(
     () => ListProfilesBloc(
       profileListUseCase: getIt<ProfileListUseCase>(),
       profileAddUseCase: getIt<ProfileAddUseCase>(),
+    ),
+  );
+
+  getIt.registerFactory<ContactLoadUseCase>(
+      () => ContactLoadUseCase(contactLoadRepo: getIt<ContactLoadRepoImpl>()));
+
+  getIt.registerFactory<ContactLoadRepoImpl>(
+    () => ContactLoadRepoImpl(
+      contactsLocalDatasource: ContactsLocalDataSourceImpl(
+        sharedPreferences: getIt<SharedPreferences>(),
+      ),
+      connectionChecker: ConnectionCheckerImpl(
+        InternetConnection(),
+      ),
+    ),
+  );
+
+  getIt.registerFactory<ContactsBloc>(
+    () => ContactsBloc(
+      contactLoadUseCase: ContactLoadUseCase(
+        contactLoadRepo: ContactLoadRepoImpl(
+          contactsLocalDatasource: ContactsLocalDataSourceImpl(
+            sharedPreferences: getIt<SharedPreferences>(),
+          ),
+          connectionChecker: ConnectionCheckerImpl(
+            InternetConnection(),
+          ),
+        ),
+      ),
+      contactsByIdUseCase: getIt<ContactsByIdUseCase>(),
     ),
   );
 }

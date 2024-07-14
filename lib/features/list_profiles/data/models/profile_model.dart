@@ -70,7 +70,7 @@ class ProfileModel extends Profile {
     return <String, dynamic>{
       'id': id,
       'name': name,
-      'imageUrl': imageUrl,
+      'images': imageUrl,
       'natureType': natureType,
       'age': age,
       'sex': sex,
@@ -80,6 +80,7 @@ class ProfileModel extends Profile {
       'classification': classification,
       'rank': rank,
       'occupations': occupations,
+      'affiliation': affiliations,
     };
   }
 
@@ -99,9 +100,9 @@ class ProfileModel extends Profile {
 
     List<String> classification = [];
     List<String> affiliations = [];
-    // if (map['id'] == 193) {
-    //   print(map['id']);
-    // }
+    if (map['id'] == 12) {
+      print(map['id']);
+    }
     double weight = 0;
     if (checkKeyExists(map, 'classification')) {
       if (map['personal']['classification'] is List) {
@@ -141,12 +142,18 @@ class ProfileModel extends Profile {
       }
     }
 
+    String? imageUrl;
+
+    if (map['images'] is String) {
+      imageUrl = map['images'];
+    } else if (map['images'] is List && (map['images'] as List).isNotEmpty) {
+      imageUrl = map['images'][0];
+    }
+
     return ProfileModel(
         id: map['id'] as int,
         name: map['name'] as String,
-        imageUrl: (map['images'] as List).isNotEmpty
-            ? map['images'][0] as String
-            : null,
+        imageUrl: imageUrl,
         natureType: map['natureType'] != null
             ? List<String>.from((map['natureType'] as List))
             : null,
@@ -184,7 +191,7 @@ class ProfileModel extends Profile {
 
   @override
   String toString() {
-    return 'ProfileModel(id: $id, name: $name, imageUrl: $imageUrl, natureType: $natureType, age: $age, sex: $sex, birthDate: $birthDate, weight: $weight, bloodType: $bloodType, classification: $classification, rank: $rank, occupations: $occupations)';
+    return 'ProfileModel(id: $id, name: $name, images: $imageUrl, natureType: $natureType, age: $age, sex: $sex, birthDate: $birthDate, weight: $weight, bloodType: $bloodType, classification: $classification, rank: $rank, occupations: $occupations)';
   }
 
   @override

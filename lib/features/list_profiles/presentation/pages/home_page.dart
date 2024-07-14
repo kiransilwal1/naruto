@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:naruto/core/common/theme/app_theme.dart';
 import 'package:naruto/core/common/widgets/buttons/button_styles.dart';
 import 'package:naruto/core/common/widgets/buttons/primary_buttons.dart';
+import 'package:naruto/features/contacts/presentation/pages/contact_list.dart';
 
 import '../../../../core/common/widgets/alert.dart';
 import '../../domain/entities/profile.dart';
@@ -472,6 +473,12 @@ class UserProfile extends StatelessWidget {
                                               AddProfileEvent(
                                                   profile: profile,
                                                   profiles: state.profiles));
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ContactList()),
+                                          );
                                         },
                                         style: LeadingIconStyle(
                                             text:

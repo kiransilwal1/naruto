@@ -5,7 +5,6 @@ import 'package:naruto/features/list_profiles/data/datasources/profile_list_loca
 import 'package:naruto/features/list_profiles/data/models/profile_model.dart';
 import 'package:naruto/features/list_profiles/domain/entities/profile.dart';
 import 'package:naruto/features/list_profiles/domain/repositories/profile_list_repo.dart';
-
 import '../../../../core/common/error/exceptions.dart';
 import '../../../../core/constants/constants.dart';
 import '../datasources/profile_list_remote_datasource.dart';
@@ -15,10 +14,11 @@ class ProfileListRepoImpl implements ProfileListRepo {
   final ConnectionChecker connectionChecker;
   final ProfileLocalDatasource profileLocalDatasource;
 
-  ProfileListRepoImpl(
-      {required this.profileRemoteDataSource,
-      required this.connectionChecker,
-      required this.profileLocalDatasource});
+  ProfileListRepoImpl({
+    required this.profileRemoteDataSource,
+    required this.connectionChecker,
+    required this.profileLocalDatasource,
+  });
   @override
   Future<Either<Failure, List<ProfileModel>>> getProfiles() async {
     try {
@@ -40,7 +40,9 @@ class ProfileListRepoImpl implements ProfileListRepo {
       if (!await (connectionChecker.isConnected)) {
         return left(Failure(Constants.noConnectionErrorMessage));
       }
-      final result = await profileRemoteDataSource.getProfiles();
+      // final result = await profileRemoteDataSource.getProfiles();
+      final result =
+          await profileLocalDatasource.addProfiles(profile as ProfileModel);
       return right(result);
     } on ServerException catch (e) {
       return left(Failure(e.message));
