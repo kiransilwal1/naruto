@@ -66,6 +66,7 @@ class _ContactListState extends State<ContactList> {
           return Scaffold(
             body: Column(
               children: [
+                // TODO: Need to implement the search bar
                 CustomSearchBar(filters: filters),
                 const SizedBox(
                   height: 20,
@@ -95,11 +96,11 @@ class _ContactListState extends State<ContactList> {
                                     List<String> releases =
                                         state.profile.natureType ?? [];
                                     List<String> affiliations =
-                                        state.profile.affiliations ?? [];
+                                        state.profile.affiliations;
                                     List<String> classifications =
                                         state.profile.classification ?? [];
                                     List<Map<String, String>> listOfMaps = [];
-
+                                    // If the state is success, prepare data that needs ot be siplayed in the pop up.
                                     for (var release in releases) {
                                       listOfMaps.add({
                                         "type": "Release",
@@ -121,8 +122,6 @@ class _ContactListState extends State<ContactList> {
                                         "value": classification
                                       });
                                     }
-
-                                    print(state.profile);
                                     return Center(
                                       child: Container(
                                         height: size.height * 0.9,
@@ -216,8 +215,7 @@ class _ContactListState extends State<ContactList> {
                                       color: Colors.grey.withOpacity(0.5),
                                       spreadRadius: 2,
                                       blurRadius: 5,
-                                      offset: Offset(
-                                          0, 3), // changes position of shadow
+                                      offset: const Offset(0, 3),
                                     ),
                                   ],
                                 ),
@@ -244,8 +242,7 @@ class _ContactListState extends State<ContactList> {
                                       color: Colors.grey.withOpacity(0.5),
                                       spreadRadius: 2,
                                       blurRadius: 5,
-                                      offset: Offset(
-                                          0, 3), // changes position of shadow
+                                      offset: const Offset(0, 3),
                                     ),
                                   ],
                                 ),

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:naruto/core/common/theme/app_theme.dart';
-import 'package:naruto/core/common/widgets/shimmers/shimmer_container_rounded.dart';
 
 import '../../../../core/common/widgets/alert.dart';
 import '../../domain/entities/profile.dart';
 import '../bloc/list_profiles_bloc.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/expandable_view.dart';
+import '../widgets/home_page_shimmer.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -39,6 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
           child: Column(
             children: [
+              // TODO: The Asset Image of wizard with the staff. Need to replace it with a Ninja Picture if possible
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 32, 0, 32),
                 child: Image.asset(
@@ -46,8 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: size.height * 0.4,
                 ),
               ),
-              Row(
-                children: const [
+              const Row(
+                children: [
                   Icon(
                     Icons.info_outline_rounded,
                   ),
@@ -60,6 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(
                 height: 16,
               ),
+              // TODO: Filter text field. It doesn't work now. Need to set state and make the filter dynamic.
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
                 child: TextField(
@@ -105,67 +107,19 @@ class _MyHomePageState extends State<MyHomePage> {
                               element.affiliations.contains(village))
                           .toList();
                     }
-                    return SizedBox(
-                      height: 500,
-                      child: ListView(
-                        children: [
-                          for (String key in villageNinjas.keys)
-                            ExpandableView(
-                                size: size,
-                                profiles: villageNinjas[key]!,
-                                title: key)
-                        ],
-                      ),
+                    // Expandable view with list of Ninjas in a village.
+                    // TODO: Not a correct implementation for now. Later need to use villages api to get all the vilages and list Ninjas per village.
+                    return Column(
+                      children: [
+                        for (String key in villageNinjas.keys)
+                          ExpandableView(
+                              size: size,
+                              profiles: villageNinjas[key]!,
+                              title: key),
+                      ],
                     );
                   } else {
-                    return SizedBox(
-                      height: 500,
-                      child: Column(
-                        children: [
-                          Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 32, 0, 32),
-                              child: Column(
-                                children: [
-                                  ShimmerContainerRounded(
-                                    height: 50,
-                                    width: size.width * 0.9,
-                                  ),
-                                  const SizedBox(
-                                    height: 8,
-                                  ),
-                                  ShimmerContainerRounded(
-                                    height: 50,
-                                    width: size.width * 0.9,
-                                  ),
-                                  const SizedBox(
-                                    height: 8,
-                                  ),
-                                  ShimmerContainerRounded(
-                                    height: 50,
-                                    width: size.width * 0.9,
-                                  ),
-                                  const SizedBox(
-                                    height: 8,
-                                  ),
-                                  ShimmerContainerRounded(
-                                    height: 50,
-                                    width: size.width * 0.9,
-                                  ),
-                                  const SizedBox(
-                                    height: 8,
-                                  ),
-                                  ShimmerContainerRounded(
-                                    height: 50,
-                                    width: size.width * 0.9,
-                                  ),
-                                  const SizedBox(
-                                    height: 8,
-                                  ),
-                                ],
-                              )),
-                        ],
-                      ),
-                    );
+                    return HomePageShimmer(size: size);
                   }
                 },
               ),

@@ -23,16 +23,14 @@ class UserProfile extends StatelessWidget {
           builder: (BuildContext context) {
             return Stack(
               children: <Widget>[
-                // Background translucent overlay
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).pop(); // Dismiss the popup
+                    Navigator.of(context).pop();
                   },
                   child: Container(
-                    color: Colors.black.withOpacity(0.5), // Adjust opacity here
+                    color: Colors.black.withOpacity(0.5),
                   ),
                 ),
-                // Popup container
                 Center(
                   child: Container(
                     height: size.height * 0.5,
@@ -209,9 +207,10 @@ class UserProfile extends StatelessWidget {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    ContactList()),
+                                                    const ContactList()),
                                           );
                                         },
+                                        // TODO: Once a ninja is added to contact, the Add Ninja button shall not be visibale to the user
                                         style: LeadingIconStyle(
                                             text:
                                                 'Add ${profile.name.split(' ')[0]}',

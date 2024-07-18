@@ -21,6 +21,7 @@ class ProfileGrids extends StatelessWidget {
         child: GridView.builder(
           itemCount: profiles.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              // setting the cross axis count to make the grid more responsive.
               crossAxisCount: size.width ~/ 170,
               mainAxisExtent: 225,
               crossAxisSpacing: 0,

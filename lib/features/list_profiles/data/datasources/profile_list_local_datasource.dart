@@ -30,11 +30,9 @@ class ProfileLocalDatasourceImpl implements ProfileLocalDatasource {
 
       profiles.add(profile);
       final profileEncoded = profile.toJson();
-      print(profileEncoded);
       String updatedJsonString =
           json.encode(profiles.map((profile) => profile.toJson()).toList());
 
-      // Save the updated list back to SharedPreferences
       await sharedPreferences.setString(profilesKey, updatedJsonString);
     } catch (e) {
       throw ServerException(e.toString());

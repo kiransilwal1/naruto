@@ -7,7 +7,6 @@ import 'buttons/primary_buttons.dart';
 void showErrorPopup(BuildContext context, String text, String buttonText,
     {String? title, Function()? onTap}) {
   onTap ??= () {
-    // Close the dialog
     Navigator.of(context).pop();
   };
   title ??= 'Error';
